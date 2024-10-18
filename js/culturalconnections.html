@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Connections</title>
+    <link rel="stylesheet" href="style2.css"> <!-- Link to the CSS file -->
+    <script src="js/home.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, I'm Leandro Costa. Welcome to my cultural connections page!</h1>
+        <img src="https://m.media-amazon.com/images/I/618OaqRoVDL._AC_UF894,1000_QL80_.jpg" alt="Photo" class="profile-pic"> <!-- Replace with the path to your photo -->
+
+        <h2>Cultural Description</h2>
+        <div class="description">
+            <h3>Cultural Shocks:</h3>
+            <ul>
+                <li>The diversity of nationalities and cultures in Vancouver compared to Brasília.</li>
+                <li>The colder climate, which is quite different from the warmth of Brazil.</li>
+            </ul>
+        </div>
+
+        <div class="description">
+            <h3>Things I Miss from Brazil:</h3>
+            <ul>
+                <li>The warm weather and sunny days.</li>
+                <li>Traditional Brazilian food and family gatherings.</li>
+            </ul>
+        </div>
+
+        <div class="description">
+            <h3>Things I Love about Vancouver:</h3>
+            <ul>
+                <li>The beautiful nature and outdoor activities available.</li>
+                <li>The friendly and welcoming atmosphere of the people.</li>
+            </ul>
+        </div>
+
+        <div class="description">
+            <h3>My Personal Goal:</h3>
+            <p>At this stage in my life, my goal is to excel in my studies and build a successful career in language and culture.</p>
+        </div>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+    <script>
+        const auth = firebase.auth();
+
+        // Check if user is authenticated
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = "index.html"; // Redirect to login page if not logged in
+            }
+        });
+
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = "index.html"; // Redirects to the login page on logout
+            });
+        }
+    </script>
+</body>
+</html>
