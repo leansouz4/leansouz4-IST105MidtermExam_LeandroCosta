@@ -53,3 +53,24 @@ window.addEventListener('load', function () {
 
     });
 });
+
+// Função para autenticar com número de telefone
+function signInWithPhone() {
+    // Obtenha o número de telefone inserido pelo usuário
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+
+    // Enviar o código SMS
+    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+        .then(confirmationResult => {
+            const code = window.prompt('Enter the verification code sent to your phone:');
+            return confirmationResult.confirm(code);
+        })
+        .then(result => {
+            console.log('User signed in successfully:', result.user);
+            window.location.href = "culturalconnections.html"; // Redireciona após sucesso
+        })
+        .catch(error => {
+            console.error('Error during sign in:', error);
+        });
+}

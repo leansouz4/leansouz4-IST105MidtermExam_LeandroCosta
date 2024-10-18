@@ -21,3 +21,6 @@ document.getElementById('logoutButton').addEventListener('click', () => {
         console.error("Error during logout:", error);
     });
 });
+
+
+
