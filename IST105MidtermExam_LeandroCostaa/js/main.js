@@ -1,33 +1,19 @@
-/*
-  CCTB Website Development
-  IST105
-  Oct 2024
-  Description: This is a simple login website where students are asked to 
-  implement Social Network Login with Firebase
-*/
-
-/*
-Function onAuthStateChanged(user)
-Write a function to check if a user is logged
-*/
-
-
 window.addEventListener('load', function () {
 
-    //Listen for auth state changes
+    // Listen for auth state changes
 
     document.getElementById('sign-in-button').addEventListener('click', function () {
 
         let provider = new firebase.auth.GoogleAuthProvider();
-
         provider.addScope('email');
         firebase.auth().signInWithPopup(provider)
             .then(function (result) {
-                console.log('Logging sucessfully', result.user);
+                console.log('Login successful', result.user);
                 location.href = 'home.html';
             })
             .catch(function (error) {
-                console.log('Logging fail', error);
+                console.error('Login failed', error);
+                alert('Google login failed. Please try again.');
             });
     });
 
@@ -40,27 +26,24 @@ window.addEventListener('load', function () {
             .then((userCredential) => {
                 // Signed in
                 let user = userCredential.user;
-                // ...
-                console.log('Logging sucessfully');
-                alert('Logging sucessfully');
+                console.log('Login successful');
+                alert('Login successful!');
                 location.href = 'culturalconnections.html';
             })
             .catch((error) => {
-                let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log('Logging fail', errorMessage);
+                console.error('Login failed', errorMessage);
+                alert('Email/Password login failed. ' + errorMessage);
             });
 
     });
 });
 
-// Função para autenticar com número de telefone
+// Function for Phone Number login
 function signInWithPhone() {
-    // Obtenha o número de telefone inserido pelo usuário
     const phoneNumber = document.getElementById('phoneNumber').value;
     const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 
-    // Enviar o código SMS
     firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
         .then(confirmationResult => {
             const code = window.prompt('Enter the verification code sent to your phone:');
@@ -68,9 +51,10 @@ function signInWithPhone() {
         })
         .then(result => {
             console.log('User signed in successfully:', result.user);
-            window.location.href = "culturalconnections.html"; // Redireciona após sucesso
+            window.location.href = "culturalconnections.html";
         })
         .catch(error => {
-            console.error('Error during sign in:', error);
+            console.error('Phone login failed:', error);
+            alert('Phone login failed. Please check your number and try again.');
         });
 }
