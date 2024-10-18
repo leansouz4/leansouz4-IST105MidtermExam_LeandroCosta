@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/1.7.0/firebase-auth.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <meta charset="UTF-8">
@@ -29,10 +28,10 @@
         <h2><span><span>‎ ‎ ‎ ‎ ‎</span><span>‎ ‎ ‎ ‎ ‎</span>‎ ‎ ‎ ‎ ‎</span>Email and Password</h2>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
-        <button onclick="signInWithEmail()">Sign In</button>
+        <button id="sign-in-2">Sign In</button>
     
         <h2></h2>
-        <button id="googleSignInBtn">Sign In with Google</button>
+        <button id="sign-in-button">Sign In with Google</button>
   
         <h2><span>‎ ‎ ‎ ‎ ‎</span>Sign in with Phone Number</h2>
         <input type="text" id="phoneNumber" placeholder="Phone Number" required>
@@ -42,3 +41,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
