@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cultural Connections</title>
     <link rel="stylesheet" href="style2.css"> <!-- Link to the CSS file -->
-    <script src="js/home.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Hello, I am Leandro Costa. Welcome to my cultural connections page!</h1>
-        <img src="https://avatars.githubusercontent.com/u/119979163?v=4" alt="Photo" class="profile-pic"> <!-- Replace with the path to your photo -->
+        <img src="https://avatars.githubusercontent.com/u/119979163?v=4" alt="Photo" class="profile-pic">
 
         <h2>Cultural Description</h2>
         <div class="description">
@@ -42,26 +41,12 @@
             <p>At this stage in my life, my goal is to excel in my studies and build a successful career in language and culture.</p>
         </div>
 
-        <button onclick="logout()">Logout</button>
+        <button id="logoutButton">Logout</button>
     </div>
 
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
-    <script>
-        const auth = firebase.auth();
-
-        // Check if user is authenticated
-        auth.onAuthStateChanged(user => {
-            if (!user) {
-                window.location.href = "index.html"; // Redirect to login page if not logged in
-            }
-        });
-
-        function logout() {
-            auth.signOut().then(() => {
-                window.location.href = "index.html"; // Redirects to the login page on logout
-            });
-        }
-    </script>
+    <script src="js/firebase.js"></script> <!-- Link to the external JavaScript file -->
 </body>
 </html>
