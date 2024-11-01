@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "IST105MidtermExam_LeandroCostaa",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

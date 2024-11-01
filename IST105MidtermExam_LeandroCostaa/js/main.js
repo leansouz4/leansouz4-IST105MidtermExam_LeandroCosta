@@ -1,65 +1,41 @@
-/*
-  CCTB Website Development
-  IST105
-  Oct 2024
-  Description: This is a simple login website where students are asked to 
-  implement Social Network Login with Firebase
-*/
-
-/*
-Function onAuthStateChanged(user)
-Write a function to check if a user is logged
-*/
-
-
+// js/main.js
 window.addEventListener('load', function () {
-
-    //Listen for auth state changes
-
+    // Login com Google
     document.getElementById('sign-in-button').addEventListener('click', function () {
-
         let provider = new firebase.auth.GoogleAuthProvider();
-
         provider.addScope('email');
         firebase.auth().signInWithPopup(provider)
             .then(function (result) {
-                console.log('Logging sucessfully', result.user);
+                console.log('Logging successfully', result.user);
                 location.href = 'home.html';
             })
             .catch(function (error) {
-                console.log('Logging fail', error);
+                console.log('Logging failed', error);
             });
     });
 
+    // Login com Email e Senha
     document.getElementById('sign-in-2').addEventListener('click', function () {
-
         let emailTxt = document.getElementById('email').value;
         let passtxt = document.getElementById('password').value;
 
         firebase.auth().signInWithEmailAndPassword(emailTxt, passtxt)
             .then((userCredential) => {
-                // Signed in
-                let user = userCredential.user;
-                // ...
-                console.log('Logging sucessfully');
-                alert('Logging sucessfully');
+                console.log('Logging successfully');
+                alert('Logging successfully');
                 location.href = 'culturalconnections.html';
             })
             .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log('Logging fail', errorMessage);
+                console.log('Logging failed', error.message);
             });
     });
 });
 
-// Função para autenticar com número de telefone
+// Função de Login com Telefone
 function signInWithPhone() {
-    // Obtenha o número de telefone inserido pelo usuário
     const phoneNumber = document.getElementById('phoneNumber').value;
     const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 
-    // Enviar o código SMS
     firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
         .then(confirmationResult => {
             const code = window.prompt('Enter the verification code sent to your phone:');
@@ -67,7 +43,7 @@ function signInWithPhone() {
         })
         .then(result => {
             console.log('User signed in successfully:', result.user);
-            window.location.href = "culturalconnections.html"; // Redireciona após sucesso
+            window.location.href = "culturalconnections.html";
         })
         .catch(error => {
             console.error('Error during sign in:', error);
