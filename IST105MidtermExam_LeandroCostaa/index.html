@@ -4,42 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <script src="https://www.gstatic.com/firebasejs/1.7.0/firebase-auth.js"></script>
     <link rel="stylesheet" href="style.css">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Firebase App with Authentication with Social Networks">
-    <title>Login Firebase - Social Networks</title>
-    <!-- <link rel="stylesheet" href="css/core.min.css" /> -->
-    <!-- <link rel="stylesheet" href="css/vendor_bundle.min.css" /> -->
-
     <link rel="shortcut icon" type="image/x-icon"
         href="https://canvascctb.s3.ca-central-1.amazonaws.com/account_1/attachments/95/CCTB_favicon.ico" />
-        <script type="module" src="firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.5.2/firebase.js"></script>
-    <script src="js/firebase.js"></script>
-    <script src="https://matriz-teletrabajo-utc.web.app/lib/jquery/jquery-3.2.1.min.js"></script>
-    <script src="js/main.js"></script>
+
+    <!-- Importação do Firebase -->
+    <script type="module">
+        // Importando funções do SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        
+        // Sua configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyALgiY-zLXvBmv-b9rflTAoLJ4ZQdscfv0",
+            authDomain: "newwproject-abfec.firebaseapp.com",
+            projectId: "newwproject-abfec",
+            storageBucket: "newwproject-abfec.firebasestorage.app",
+            messagingSenderId: "178437666218",
+            appId: "1:178437666218:web:98e3d883ac965b1d0267d3",
+            measurementId: "G-Z7NNF5QMB6"
+        };
+
+        // Inicializando o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app); // Inicializando o Auth
+    </script>
 </head>
 <body>
-    <h1>Login now</h1>
+    <h1>Login</h1>
 
     <div>
-        <h2><span><span>‎ ‎ ‎ ‎ ‎</span><span>‎ ‎ ‎ ‎ ‎</span>‎ ‎ ‎ ‎ ‎</span>Email and Password</h2>
+        <h2>Email and Password</h2>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
-        <button id="sign-in-2">Sign In</button>
-    
-        <h2></h2>
+        <button id="sign-in-2" onclick="signIn()">Sign In</button>
+
+        <h2>Sign in with Google</h2>
         <button id="sign-in-button">Sign In with Google</button>
 
-        <h2><span>‎ ‎ ‎ ‎ ‎</span>Sign in with Phone Number</h2>
+        <h2>Sign in with Phone Number</h2>
         <input type="text" id="phoneNumber" placeholder="Phone Number" required>
         <button onclick="signInWithPhone()" style="background-color: black;">Sign In</button>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Função para lidar com o login com email e senha
+        function signIn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Login bem-sucedido
+                    const user = userCredential.user;
+                    console.log("User signed in:", user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Error signing in:", errorCode, errorMessage);
+                });
+        }
+    </script>
 </body>
 </html>
-
